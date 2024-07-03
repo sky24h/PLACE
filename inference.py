@@ -79,7 +79,7 @@ def main():
 
     state_dict = get_state_dict(torch.load(opt.ckpt, map_location=torch.device('cuda')))
     state_dict = get_state_dict(state_dict)
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict, strict=False)
     model = model.cuda()
 
     sampler = PLMSSampler(model)
