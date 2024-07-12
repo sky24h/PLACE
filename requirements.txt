@@ -3,7 +3,8 @@ xformers==0.0.25 # optional, but must be compatible with torch version
 scipy==1.13.1
 numpy==1.26.3
 transformers==4.42.3
-pytorch_lightning==2.3.1
+pytorch_lightning==1.9.5
 open_clip_torch==2.24.0
 einops
 omegaconf
+tensorboard==2.12.3

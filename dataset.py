@@ -12,6 +12,271 @@ from ldm.modules.encoders.modules import FrozenCLIPEmbedder as CLIP
 
 clip = CLIP()
 
+
+def colormap():
+    return np.array(
+        [
+            [0, 0, 0],
+            [128, 0, 0],
+            [0, 128, 0],
+            [128, 128, 0],
+            [0, 0, 128],
+            [128, 0, 128],
+            [0, 128, 128],
+            [128, 128, 128],
+            [64, 0, 0],
+            [192, 0, 0],
+            [64, 128, 0],
+            [192, 128, 0],
+            [64, 0, 128],
+            [192, 0, 128],
+            [64, 128, 128],
+            [192, 128, 128],
+            [0, 64, 0],
+            [128, 64, 0],
+            [0, 192, 0],
+            [128, 192, 0],
+            [0, 64, 128],
+            [128, 64, 128],
+            [0, 192, 128],
+            [128, 192, 128],
+            [64, 64, 0],
+            [192, 64, 0],
+            [64, 192, 0],
+            [192, 192, 0],
+            [64, 64, 128],
+            [192, 64, 128],
+            [64, 192, 128],
+            [192, 192, 128],
+            [0, 0, 64],
+            [128, 0, 64],
+            [0, 128, 64],
+            [128, 128, 64],
+            [0, 0, 192],
+            [128, 0, 192],
+            [0, 128, 192],
+            [128, 128, 192],
+            [64, 0, 64],
+            [192, 0, 64],
+            [64, 128, 64],
+            [192, 128, 64],
+            [64, 0, 192],
+            [192, 0, 192],
+            [64, 128, 192],
+            [192, 128, 192],
+            [0, 64, 64],
+            [128, 64, 64],
+            [0, 192, 64],
+            [128, 192, 64],
+            [0, 64, 192],
+            [128, 64, 192],
+            [0, 192, 192],
+            [128, 192, 192],
+            [64, 64, 64],
+            [192, 64, 64],
+            [64, 192, 64],
+            [192, 192, 64],
+            [64, 64, 192],
+            [192, 64, 192],
+            [64, 192, 192],
+            [192, 192, 192],
+            [32, 0, 0],
+            [160, 0, 0],
+            [32, 128, 0],
+            [160, 128, 0],
+            [32, 0, 128],
+            [160, 0, 128],
+            [32, 128, 128],
+            [160, 128, 128],
+            [96, 0, 0],
+            [224, 0, 0],
+            [96, 128, 0],
+            [224, 128, 0],
+            [96, 0, 128],
+            [224, 0, 128],
+            [96, 128, 128],
+            [224, 128, 128],
+            [32, 64, 0],
+            [160, 64, 0],
+            [32, 192, 0],
+            [160, 192, 0],
+            [32, 64, 128],
+            [160, 64, 128],
+            [32, 192, 128],
+            [160, 192, 128],
+            [96, 64, 0],
+            [224, 64, 0],
+            [96, 192, 0],
+            [224, 192, 0],
+            [96, 64, 128],
+            [224, 64, 128],
+            [96, 192, 128],
+            [224, 192, 128],
+            [32, 0, 64],
+            [160, 0, 64],
+            [32, 128, 64],
+            [160, 128, 64],
+            [32, 0, 192],
+            [160, 0, 192],
+            [32, 128, 192],
+            [160, 128, 192],
+            [96, 0, 64],
+            [224, 0, 64],
+            [96, 128, 64],
+            [224, 128, 64],
+            [96, 0, 192],
+            [224, 0, 192],
+            [96, 128, 192],
+            [224, 128, 192],
+            [32, 64, 64],
+            [160, 64, 64],
+            [32, 192, 64],
+            [160, 192, 64],
+            [32, 64, 192],
+            [160, 64, 192],
+            [32, 192, 192],
+            [160, 192, 192],
+            [96, 64, 64],
+            [224, 64, 64],
+            [96, 192, 64],
+            [224, 192, 64],
+            [96, 64, 192],
+            [224, 64, 192],
+            [96, 192, 192],
+            [224, 192, 192],
+            [0, 32, 0],
+            [128, 32, 0],
+            [0, 160, 0],
+            [128, 160, 0],
+            [0, 32, 128],
+            [128, 32, 128],
+            [0, 160, 128],
+            [128, 160, 128],
+            [64, 32, 0],
+            [192, 32, 0],
+            [64, 160, 0],
+            [192, 160, 0],
+            [64, 32, 128],
+            [192, 32, 128],
+            [64, 160, 128],
+            [192, 160, 128],
+            [0, 96, 0],
+            [128, 96, 0],
+            [0, 224, 0],
+            [128, 224, 0],
+            [0, 96, 128],
+            [128, 96, 128],
+            [0, 224, 128],
+            [128, 224, 128],
+            [64, 96, 0],
+            [192, 96, 0],
+            [64, 224, 0],
+            [192, 224, 0],
+            [64, 96, 128],
+            [192, 96, 128],
+            [64, 224, 128],
+            [192, 224, 128],
+            [0, 32, 64],
+            [128, 32, 64],
+            [0, 160, 64],
+            [128, 160, 64],
+            [0, 32, 192],
+            [128, 32, 192],
+            [0, 160, 192],
+            [128, 160, 192],
+            [64, 32, 64],
+            [192, 32, 64],
+            [64, 160, 64],
+            [192, 160, 64],
+            [64, 32, 192],
+            [192, 32, 192],
+            [64, 160, 192],
+            [192, 160, 192],
+            [0, 96, 64],
+            [128, 96, 64],
+            [0, 224, 64],
+            [128, 224, 64],
+            [0, 96, 192],
+            [128, 96, 192],
+            [0, 224, 192],
+            [128, 224, 192],
+            [64, 96, 64],
+            [192, 96, 64],
+            [64, 224, 64],
+            [192, 224, 64],
+            [64, 96, 192],
+            [192, 96, 192],
+            [64, 224, 192],
+            [192, 224, 192],
+            [32, 32, 0],
+            [160, 32, 0],
+            [32, 160, 0],
+            [160, 160, 0],
+            [32, 32, 128],
+            [160, 32, 128],
+            [32, 160, 128],
+            [160, 160, 128],
+            [96, 32, 0],
+            [224, 32, 0],
+            [96, 160, 0],
+            [224, 160, 0],
+            [96, 32, 128],
+            [224, 32, 128],
+            [96, 160, 128],
+            [224, 160, 128],
+            [32, 96, 0],
+            [160, 96, 0],
+            [32, 224, 0],
+            [160, 224, 0],
+            [32, 96, 128],
+            [160, 96, 128],
+            [32, 224, 128],
+            [160, 224, 128],
+            [96, 96, 0],
+            [224, 96, 0],
+            [96, 224, 0],
+            [224, 224, 0],
+            [96, 96, 128],
+            [224, 96, 128],
+            [96, 224, 128],
+            [224, 224, 128],
+            [32, 32, 64],
+            [160, 32, 64],
+            [32, 160, 64],
+            [160, 160, 64],
+            [32, 32, 192],
+            [160, 32, 192],
+            [32, 160, 192],
+            [160, 160, 192],
+            [96, 32, 64],
+            [224, 32, 64],
+            [96, 160, 64],
+            [224, 160, 64],
+            [96, 32, 192],
+            [224, 32, 192],
+            [96, 160, 192],
+            [224, 160, 192],
+            [32, 96, 64],
+            [160, 96, 64],
+            [32, 224, 64],
+            [160, 224, 64],
+            [32, 96, 192],
+            [160, 96, 192],
+            [32, 224, 192],
+            [160, 224, 192],
+            [96, 96, 64],
+            [224, 96, 64],
+            [96, 224, 64],
+            [224, 224, 64],
+            [96, 96, 192],
+            [224, 96, 192],
+            [96, 224, 192],
+            [224, 224, 192],
+        ],
+        dtype=np.uint8,
+    )
+
+
 ADE20K = {
     1: "wall",
     2: "building edifice",
@@ -366,24 +631,22 @@ def gettks(tkss):
 
 
 class ADE20KDataset(Dataset):
-    def __init__(self, data_root, phase="Val"):
+    def __init__(self, data_root, phase="val", size=512):
         self.data = []
         path = data_root
-        prefix = "validation" if phase == "Val" else "training"
+        prefix = "validation" if phase == "val" else "training"
         files = (
-            os.listdir(path + "/images/" + prefix + "/")
+            os.listdir(os.path.join(path, "images", prefix))
             if phase == "Train"
-            else os.listdir(path + "/images/" + prefix + "/")
+            else os.listdir(os.path.join(path, "images", prefix))
         )
         for fn in files:
             self.data.append(
                 {
-                    "target": path + "/images/" + prefix + "/" + fn,
-                    "source": path
-                    + "/annotations/"
-                    + prefix
-                    + "/"
-                    + fn.replace(".jpg", ".png"),
+                    "target": os.path.join(path, "images", prefix, fn),
+                    "source": os.path.join(
+                        path, "annotations", prefix, fn.replace(".jpg", ".png")
+                    ),
                 }
             )
 
@@ -416,11 +679,13 @@ class ADE20KDataset(Dataset):
         target_filename = item["target"]
 
         source = np.array(
-            Image.open(source_filename).resize((512, 512), Image.NEAREST),
+            Image.open(source_filename).resize((self.size, self.size), Image.NEAREST),
             dtype=np.float,
         )
         target = np.array(
-            Image.open(target_filename).resize((512, 512), Image.BICUBIC).convert("RGB")
+            Image.open(target_filename)
+            .resize((self.size, self.size), Image.BICUBIC)
+            .convert("RGB")
         )
 
         tokens = np.full((77), 49407)
@@ -441,7 +706,7 @@ class ADE20KDataset(Dataset):
         tokens_cls[1 : len(token_list) + 1] = np.array(tokens_cls_list)
 
         # Normalize source images to [0, 1].
-        viewsource = np.zeros((512, 512, 3))
+        viewsource = np.zeros((self.size, self.size, 3))
         viewsource[:, :, 0] = source
         viewsource[:, :, 1] = source
         viewsource[:, :, 2] = source
@@ -464,10 +729,10 @@ class ADE20KDataset(Dataset):
         )
 
         return dict(
-            jpg=target,
+            image=target,
             txt=prompt,
             tks=tokens,
-            hint=source,
+            label=source,
             targetpath=item["target"],
             sourcepath=item["source"],
             viewcontrol=viewsource,
@@ -476,15 +741,16 @@ class ADE20KDataset(Dataset):
 
 
 class COCODataset(Dataset):
-    def __init__(self, data_root, phase="Val"):
+    def __init__(self, data_root, phase="val", size=512):
+        self.size = size
         self.data = []
         path = data_root
-        prefix = "val" if phase == "Val" else "train"
-        files = os.listdir(os.path.join(path, prefix+"_img"))
+        prefix = "val" if phase == "val" else "train"
+        files = os.listdir(os.path.join(path, prefix + "_img"))
         for fn in files:
             self.data.append(
                 {
-                    "target": os.path.join(path, prefix+"_img", fn),
+                    "target": os.path.join(path, prefix + "_img", fn),
                     "source": os.path.join(
                         path,
                         prefix + "_mask",
@@ -522,7 +788,7 @@ class COCODataset(Dataset):
         target_filename = item["target"]
 
         source = np.array(
-            Image.open(source_filename).resize((512, 512), Image.NEAREST),
+            Image.open(source_filename).resize((self.size, self.size), Image.NEAREST),
             dtype=np.float64,
         )
         source = np.where(source == 255, -1, source)
@@ -530,7 +796,7 @@ class COCODataset(Dataset):
 
         target = np.array(
             Image.open(target_filename)
-            .resize((512, 512), Image.BILINEAR)
+            .resize((self.size, self.size), Image.BILINEAR)
             .convert("RGB")
         )
 
@@ -552,7 +818,7 @@ class COCODataset(Dataset):
         tokens_cls[1 : len(token_list) + 1] = np.array(tokens_cls_list)
 
         # Normalize source images to [0, 1].
-        viewsource = np.zeros((512, 512, 3))
+        viewsource = np.zeros((self.size, self.size, 3))
         viewsource[:, :, 0] = source
         viewsource[:, :, 1] = source
         viewsource[:, :, 2] = source
@@ -575,10 +841,10 @@ class COCODataset(Dataset):
         )
 
         return dict(
-            jpg=target,
+            image=target,
             txt=prompt,
             tks=tokens,
-            hint=source,
+            label=source,
             targetpath=item["target"],
             sourcepath=item["source"],
             viewcontrol=viewsource,

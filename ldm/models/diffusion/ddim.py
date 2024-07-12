@@ -220,14 +220,13 @@ class DDIMSampler(object):
             assert self.model.parameterization == "eps", 'not implemented'
             e_t = score_corrector.modify_score(self.model, e_t, x, t, c, **corrector_kwargs)
 
-        print(e_t.shape,'####')
+        # print(e_t.shape,'####')
         rst = self.model.decode_first_stage(e_t)
-        print(rst.shape,'@@@')
+        # print(rst.shape,'@@@')
         import einops
         from PIL import Image
         rst = (einops.rearrange(rst, 'b c h w -> b h w c') * 127.5 + 127.5).cpu().numpy().clip(0, 255).astype(np.uint8)
-        print(rst.shape)
-        Image.fromarray(rst[0]).save('getnoise_for_fig2/'+str(int(t[0]))+'.png')
+        # print(rst.shape)
 
         alphas = self.model.alphas_cumprod if use_original_steps else self.ddim_alphas
         alphas_prev = self.model.alphas_cumprod_prev if use_original_steps else self.ddim_alphas_prev
