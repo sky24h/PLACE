@@ -41,9 +41,14 @@ A forked repository for the paper "PLACE: Adaptive Layout-Semantic Fusion for Se
 pip install -r requirements.txt
 ```
 
-#### Data Preparation
-
-Please follow the dataset preparation process in [FreestyleNet](https://github.com/essunny310/FreestyleNet).
+#### Data Structure
+```
+|-- coco_stuff
+|   |-- train_img
+|   |-- train_mask
+|   |-- val_img
+|   `-- val_mask
+```
 
 #### Inference on Pre-trained Models
 
